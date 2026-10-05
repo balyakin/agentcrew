@@ -1,8 +1,11 @@
 """Real Git behavior: source preservation, immutable snapshots, and safe apply."""
 
 import importlib
+import os
 import subprocess
 from pathlib import Path
+from types import ModuleType
+from typing import Any, Dict
 
 import pytest
 
@@ -85,16 +88,39 @@ def test_preflight_refuses_all_dirty_sources(repo, snapshots, state):
     assert 'unsaved' in (repo / 'code with spaces.py').read_text() or state == 'untracked'
 
 
-def test_preflight_lists_symlinks_without_following_them(repo, snapshots, tmp_path):
+def test_preflight_lists_symlinks_without_following_them(
+    repo: Path, snapshots: ModuleType, tmp_path: Path
+) -> None:
+    """Verify that snapshots record symlinks without reading their targets
+
+    Args:
+        repo: Source Git repository
+        snapshots: Git snapshot module under test
+        tmp_path: Temporary directory outside the source repository
+
+    Returns:
+        None
+
+    Raises:
+        AssertionError: If link metadata or target contents are handled incorrectly
+    """
+    # ARRANGE
+    secret_content: bytes = b'agentcrew-symlink-target-content\n'
     command(repo, 'switch', '-c', 'feature')
-    outside = tmp_path / 'secret'
-    outside.write_text('private')
+    outside: Path = tmp_path / 'secret'
+    outside.write_bytes(secret_content)
     (repo / 'link').symlink_to(outside)
     command(repo, 'add', '.')
     command(repo, 'commit', '-m', 'link')
-    snapshot = snapshots.preflight(repo, 'review', 'main')
+
+    # ACT
+    snapshot: Dict[str, Any] = snapshots.preflight(repo, 'review', 'main')
+    patch: bytes = snapshot['diff']
+
+    # ASSERT
     assert any(item['path'] == 'link' and item['kind'] == 'symlink' for item in snapshot['special_files'])
-    assert b'private' not in snapshot['diff']
+    assert os.fsencode(outside) in patch
+    assert secret_content not in patch
 
 
 def test_worktrees_freeze_binary_spaces_and_source_preservation(repo, snapshots, tmp_path):
