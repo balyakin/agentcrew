@@ -1,0 +1,66 @@
+name: local checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python: ['3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Install Linux tmux
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y tmux
+      - name: Install macOS tmux
+        if: runner.os == 'macOS'
+        run: brew list tmux >/dev/null 2>&1 || brew install tmux
+      - name: Install locked tools
+        run: |
+          python -m venv .venv
+          .venv/bin/python -m pip install -r requirements.lock
+      - name: Record environment
+        run: |
+          .venv/bin/python --version
+          git --version
+          tmux -V
+          node --version
+          .venv/bin/agentcrew doctor --json
+      - name: Lint
+        run: .venv/bin/python -m ruff check .
+      - name: Unit, Git, SQLite, tmux and test-provider workflows
+        run: .venv/bin/python -m pytest -q --junitxml=ci-results.xml
+      - name: Build wheel
+        run: .venv/bin/python -m pip wheel --no-deps . --wheel-dir dist
+      - name: Fresh wheel installation
+        run: |
+          python -m venv .wheel-venv
+          .wheel-venv/bin/python -m pip install dist/*.whl
+          .wheel-venv/bin/agentcrew --version
+          .wheel-venv/bin/agentcrew doctor --json
+      - name: Preserve test report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: tests-${{ matrix.os }}-${{ matrix.python }}
+          path: ci-results.xml
+          if-no-files-found: ignore

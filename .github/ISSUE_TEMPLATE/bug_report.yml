@@ -1,0 +1,38 @@
+name: Bug report
+description: Reproduce a workflow, evidence, provider or recovery problem.
+body:
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behavior
+      description: Include the command and observed outcome.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Prefer a small fictional repository. Do not include private source code.
+    validations:
+      required: true
+  - type: textarea
+    id: doctor
+    attributes:
+      label: agentcrew doctor --json
+      description: Inspect the output before submitting; remove private paths if needed.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: report
+    attributes:
+      label: Redacted report and candidate SHA
+      description: Include agentcrew report RUN_ID --format json. Omit raw traces and secrets.
+      render: json
+  - type: input
+    id: version
+    attributes:
+      label: AgentCrew version and operating system
+      placeholder: 1.0.0 checkout SHA, Linux/macOS version
+    validations:
+      required: true

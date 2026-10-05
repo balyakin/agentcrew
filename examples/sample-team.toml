@@ -1,0 +1,22 @@
+schema_version = 1
+name = "orders-pair"
+
+[[roles]]
+address = "dev-owner"
+description = "Implement the assigned order task, tests and documentation in the isolated copy."
+provider = "codex"
+access = "workspace-write"
+timeout_seconds = 900
+# model = "your-explicit-model"
+
+[[roles]]
+address = "dev-check"
+description = "Review the controller-frozen commit and its behavioral tests."
+provider = "codex"
+access = "read-only"
+timeout_seconds = 900
+
+[[links]]
+from = "dev-owner"
+to = "dev-check"
+automatic = false

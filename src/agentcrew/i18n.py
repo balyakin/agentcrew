@@ -1,0 +1,252 @@
+"""Small shared vocabulary; command names and JSON keys stay unchanged."""
+
+STRINGS = {
+    "complete": ("complete", "полностью"),
+    "changed_files": ("Changed files", "Изменённые файлы"),
+    "provider_model": ("Provider/model", "Провайдер/модель"),
+    "questions": ("Questions", "Вопросы"),
+    "no_plan": ("No plan has completed.", "План ещё не готов."),
+    "no_findings": (
+        "No validated findings recorded; see agent completeness above.",
+        "Валидных находок пока нет; выше указано, какие агенты завершили работу.",
+    ),
+    "limitations": ("Limitations", "Ограничения"),
+    "outcome": ("Outcome", "Результат"),
+    "run": ("Run", "Запуск"),
+    "doctor": ("Environment checks", "Проверка окружения"),
+    "init": ("Configuration", "Настройки"),
+    "develop": ("Development", "Разработка"),
+    "new": ("New project", "Новый проект"),
+    "review": ("Review", "Ревью"),
+    "fix": ("Fix", "Исправление находки"),
+    "finding": ("Finding", "Находка"),
+    "confirm": ("Manual confirmation", "Ручная проверка"),
+    "apply": ("Apply patch", "Применение патча"),
+    "recover": ("Recovery plan", "Восстановление"),
+    "cleanup": ("Cleanup", "Очистка"),
+    "export": ("Export", "Экспорт"),
+    "send": ("Message", "Сообщение"),
+    "team": ("Team", "Команда"),
+    "queue": ("Queue", "Очередь"),
+    "Local verifiable coding teams in tmux": (
+        "Local verifiable coding teams in tmux",
+        "Команды агентов для проверяемой разработки в tmux",
+    ),
+    "Check environment; model calls only with --smoke": (
+        "Check environment; model calls only with --smoke",
+        "Проверить окружение; вызов модели только с --smoke",
+    ),
+    "Create repository configuration without running it": (
+        "Create repository configuration without running it",
+        "Создать настройки репозитория без запуска кода",
+    ),
+    "Implement a specification": ("Implement a specification", "Выполнить задачу на разработку"),
+    "Create and develop a project": ("Create and develop a project", "Создать проект и выполнить задачу"),
+    "Review a frozen Git change": ("Review a frozen Git change", "Проверить зафиксированное изменение Git"),
+    "Fix one finding in a separate child run": (
+        "Fix one finding in a separate child run",
+        "Исправить находку в отдельном дочернем запуске",
+    ),
+    "Read current runs/teams": ("Read current runs/teams", "Показать текущие запуски и команды"),
+    "Read report": ("Read report", "Показать отчёт"),
+    "Read plan": ("Read plan", "Показать план"),
+    "Read diff": ("Read diff", "Показать патч"),
+    "Inspect or audit a finding": ("Inspect or audit a finding", "Изучить находку или записать решение"),
+    "Audit candidate-bound manual requirement evidence": (
+        "Audit candidate-bound manual requirement evidence",
+        "Записать ручную проверку критерия этого кандидата",
+    ),
+    "Answer a recorded planner question": (
+        "Answer a recorded planner question",
+        "Ответить на сохранённый вопрос планировщика",
+    ),
+    "Apply a specific source-based patch without committing": (
+        "Apply a specific source-based patch without committing",
+        "Применить патч кандидата без коммита",
+    ),
+    "Attach a persistent worker pane": ("Attach a persistent worker pane", "Подключиться к панели агента"),
+    "pause one workflow": ("pause one workflow", "Приостановить запуск"),
+    "resume one workflow": ("resume one workflow", "Продолжить запуск"),
+    "cancel one workflow": ("cancel one workflow", "Отменить запуск"),
+    "Inspect recovery before restarting verified processes": (
+        "Inspect recovery before restarting verified processes",
+        "Изучить состояние перед восстановлением процессов",
+    ),
+    "Preview/delete only owned clean completed worktrees": (
+        "Preview/delete only owned clean completed worktrees",
+        "Просмотреть и удалить только свои чистые завершённые копии",
+    ),
+    "Export a report with explicit redaction": (
+        "Export a report with explicit redaction",
+        "Экспортировать отчёт с явным скрытием данных",
+    ),
+    "Write an informational durable inbox message": (
+        "Write an informational durable inbox message",
+        "Сохранить адресное информационное сообщение",
+    ),
+    "Keyboard dashboard; closing it preserves workers": (
+        "Keyboard dashboard; closing it preserves workers",
+        "Панель с клавиатурным управлением; выход сохраняет агентов",
+    ),
+    "Persistent teams": ("Persistent teams", "Постоянные команды"),
+    "Start isolated persistent seats": (
+        "Start isolated persistent seats",
+        "Запустить агентов в отдельных копиях",
+    ),
+    "Read teams": ("Read teams", "Показать команды"),
+    "Stop only this team": ("Stop only this team", "Остановить эту команду"),
+    "Recover a stopped team": ("Recover a stopped team", "Восстановить остановленную команду"),
+    "Durable owned work": ("Durable owned work", "Долговечная очередь с владельцами заданий"),
+    "Assign a task": ("Assign a task", "Назначить задание"),
+    "Read tasks": ("Read tasks", "Показать задания"),
+    "Read one task": ("Read one task", "Показать задание"),
+    "Transfer a SHA artifact": ("Transfer a SHA artifact", "Передать артефакт с SHA"),
+    "Record artifact completion": ("Record artifact completion", "Записать завершение с артефактом"),
+    "Block with a remedy": ("Block with a remedy", "Заблокировать с указанием способа продолжения"),
+    "Retry only after stopping and inspecting old attempt": (
+        "Retry only after stopping and inspecting old attempt",
+        "Повторить после остановки и осмотра старой попытки",
+    ),
+    "runs": ("Runs / teams", "Запуски / команды"),
+    "seats": ("Seats", "Агенты"),
+    "tasks": ("Tasks", "Задания"),
+    "checks": ("Checks", "Проверки"),
+    "findings": ("Findings", "Находки"),
+    "task": ("Task", "Задача"),
+    "plan": ("Plan", "План"),
+    "requirements": ("Requirements", "Критерии"),
+    "diff": ("Diff", "Патч"),
+    "report": ("Report", "Отчёт"),
+    "events": ("Events", "События"),
+    "role": ("Role / provider", "Роль / провайдер"),
+    "status": ("Status", "Статус"),
+    "where": ("File:line", "Файл:строка"),
+    "name": ("Name", "Название"),
+    "description": ("Description", "Описание"),
+    "help": ("Help", "Справка"),
+    "quit": ("Quit", "Выход"),
+    "attach": ("Attach", "Панель"),
+    "filter": ("Filter", "Фильтр"),
+    "pause": ("Pause", "Пауза"),
+    "resume": ("Resume", "Продолжить"),
+    "cancel": ("Cancel", "Отменить"),
+    "answer": ("Answer saved question", "Ответить на вопрос"),
+    "reproduce": ("Record reproduction", "Записать подтверждение"),
+    "dismiss": ("Dismiss finding with reason", "Отклонить находку с обоснованием"),
+    "manual": ("Confirm manual requirement", "Проверить ручной критерий"),
+    "save": ("Save", "Сохранить"),
+    "close": ("Close", "Закрыть"),
+    "passed": ("passed", "пройдено"),
+    "failed": ("failed", "ошибка"),
+    "unknown": ("unknown", "не проверено"),
+    "partial": ("partial", "частично"),
+    "accepted": ("accepted", "принято"),
+    "rejected": ("rejected", "отклонено"),
+    "pending": ("pending", "ожидает"),
+    "preparing": ("preparing", "подготовка"),
+    "running": ("running", "в работе"),
+    "paused": ("paused", "на паузе"),
+    "completed": ("completed", "завершено"),
+    "canceled": ("canceled", "отменено"),
+    "needs_attention": ("needs attention", "нужно вмешательство"),
+    "claimed": ("in progress", "выполняется"),
+    "done": ("done", "готово"),
+    "blocked": ("blocked", "заблокировано"),
+    "starting": ("starting", "запускается"),
+    "ready": ("ready", "готов"),
+    "busy": ("busy", "занят"),
+    "stopped": ("stopped", "остановлен"),
+    "crashed": ("agent crashed", "агент упал"),
+    "reported": ("hypothesis", "гипотеза"),
+    "corroborated": ("agreed hypothesis", "согласованная гипотеза"),
+    "reproduced": ("reproduced", "подтверждено"),
+    "dismissed": ("dismissed", "отклонено"),
+    "fixed": ("fixed", "исправлено"),
+    "reviewing": ("independent review", "независимое ревью"),
+    "planning": ("planning", "планирование"),
+    "implementing": ("implementation", "реализация"),
+    "revision_limit": ("revision limit reached", "достигнут лимит ревизий"),
+    "check_failed": ("Check failed", "Проверка завершилась ошибкой"),
+    "review_incomplete": ("Review incomplete", "Ревью не завершено"),
+    "implement": ("Implementation", "Реализация"),
+    "revise": ("Revision", "Исправление кандидата"),
+    "evaluate": ("Checks and independent review", "Проверки и независимое ревью"),
+    "verify": ("Verification", "Проверка кандидата"),
+    "all": ("all", "все"),
+    "active": ("active", "активные"),
+    "attention": ("attention", "с проблемами"),
+    "empty": (
+        "No saved items. CLI commands start work; this view only reads state.",
+        "Сохранённых данных пока нет. Работа запускается командами CLI; здесь просмотр состояния.",
+    ),
+    "select_run": ("Select a saved run or team.", "Выберите сохранённый запуск или команду."),
+    "select_seat": ("Select a seat before attaching.", "Выберите агента для подключения к панели."),
+    "select_finding": ("Select a finding first.", "Сначала выберите находку."),
+    "select_requirement": ("Select a manual requirement first.", "Сначала выберите ручной критерий."),
+    "no_candidate": ("No frozen candidate yet.", "Зафиксированного кандидата пока нет."),
+    "not_manual": (
+        "An automated requirement needs executed test evidence.",
+        "Автоматическому критерию нужны результаты выполненного теста.",
+    ),
+    "candidate_changed": (
+        "Candidate changed; inspect the current candidate before confirming.",
+        "Кандидат изменился; изучите текущую версию перед подтверждением.",
+    ),
+    "evidence_prompt": (
+        "Describe what you checked and the observed result. This is saved in audit.",
+        "Опишите проверку и наблюдаемый результат. Это сохранится в истории решений.",
+    ),
+    "answer_prompt": (
+        "Write your answer to the saved questions. It is saved before work resumes.",
+        "Ответьте на сохранённые вопросы. Ответ сохранится до продолжения работы.",
+    ),
+    "spec_too_large": (
+        "Spec exceeds the display limit; inspect the saved file.",
+        "Задача превышает лимит отображения; откройте сохранённый файл.",
+    ),
+    "reason_prompt": (
+        "Explain why this finding is false. P0/P1 needs a concrete reason.",
+        "Объясните, почему находка ложная. Для P0/P1 нужно конкретное обоснование.",
+    ),
+    "evidence_required": (
+        "Give a concrete observation, with enough detail to audit it.",
+        "Опишите конкретное наблюдение достаточно подробно для проверки решения.",
+    ),
+    "saved": ("Audited decision saved.", "Решение сохранено с записью в истории."),
+    "report_hint": (
+        "Press r to read the report for the selected run.",
+        "Нажмите r для отчёта выбранного запуска.",
+    ),
+    "diff_hint": (
+        "Select the Diff tab to inspect the frozen candidate.",
+        "Откройте вкладку «Патч» для текущего кандидата.",
+    ),
+    "source": ("Source", "Источник"),
+    "evidence": ("Evidence", "Свидетельство"),
+    "reproduction": ("Reproduction", "Способ проверки"),
+    "revision": ("Revision", "Ревизия"),
+    "read_error": ("Cannot read saved state", "Не удалось прочитать сохранённое состояние"),
+    "help_text": (
+        "Arrows: select a row; Tab: move focus; Enter: open details.\n"
+        "r report; a attach to selected seat; f all/active/attention filter.\n"
+        "p pause; s resume; c cancel and retain partial work.\n"
+        "v record finding reproduction; x dismiss with a reason.\n"
+        "m confirm a selected manual requirement; b answer a saved question.\n"
+        "Ctrl+Enter saves evidence; Ctrl+D marks a manual requirement failed.\n"
+        "? help; q exits this view without stopping agents; Esc closes a dialog.\n"
+        "Statuses are written as text. Unknown is not passed; agreement is not reproduction.",
+        "Стрелки: выбор строки; Tab: смена фокуса; Enter: подробности.\n"
+        "r отчёт; a панель выбранного агента; f фильтр всех/активных/проблемных.\n"
+        "p пауза; s продолжить; c отменить с сохранением частичной работы.\n"
+        "v подтвердить находку; x отклонить с обоснованием.\n"
+        "m проверить выбранный ручной критерий; b ответить на сохранённый вопрос.\n"
+        "Ctrl+Enter сохраняет свидетельство; Ctrl+D отмечает ручной критерий как ошибку.\n"
+        "? справка; q выход без остановки агентов; Esc закрывает диалог.\n"
+        "Статусы подписаны словами. «Не проверено» не означает успех; согласие не означает воспроизведение.",
+    ),
+}
+
+
+def t(key: str, lang: str = "en") -> str:
+    pair = STRINGS.get(key)
+    return pair[lang == "ru"] if pair else key
